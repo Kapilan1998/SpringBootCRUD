@@ -26,17 +26,17 @@ public class SpringBootCrudApplication implements CommandLineRunner {
         employee.setEmailID("Vettimaran@gmail.com");
         employeeRepository.save(employee);
 
-        Employee employee1 = new Employee();
-        employee1.setFirstName("Edwin");
-        employee1.setLastName("Mose");
-        employee1.setEmailID("Edwinmose@gmail.com");
-        employeeRepository.save(employee1);
-
-        Employee employee2 = new Employee();
-        employee2.setFirstName("Lasith");
-        employee2.setLastName("Malinga");
-        employee2.setEmailID("lasithmalinga96@gmail.com");
-        employeeRepository.save(employee2);
+//        Employee employee1 = new Employee();
+//        employee1.setFirstName("Edwin");
+//        employee1.setLastName("Mose");
+//        employee1.setEmailID("Edwinmose@gmail.com");
+//        employeeRepository.save(employee1);
+//
+//        Employee employee2 = new Employee();
+//        employee2.setFirstName("Lasith");
+//        employee2.setLastName("Malinga");
+//        employee2.setEmailID("lasithmalinga96@gmail.com");
+//        employeeRepository.save(employee2);
 
     }
 }

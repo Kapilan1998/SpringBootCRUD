@@ -43,7 +43,7 @@ public class EmployeeController {
           updateEmployee.setFirstName(employeeDetails.getFirstName());
           updateEmployee.setLastName((employeeDetails.getLastName()));
           updateEmployee.setEmailID((employeeDetails.getEmailID()));
-          
+
           employeeRepository.save(updateEmployee);
           return ResponseEntity.ok(updateEmployee);
     }
