@@ -30,29 +30,37 @@ public class EmployeeController {
 
     //build get employee by id REST API
     @GetMapping("{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable long id){
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable long id){                     //ResponseEntity is used to return an HTTP response
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new ResouceNotFoundException("Sorry, employee with id = "+id+" is not exist"));
         return ResponseEntity.ok(employee);
     }
 
     //build update employee REST API
     @PutMapping("{id}")  // used when updating data
+                        //@PathVariable is to extract value from URL    and    @RequestBody is to extract request body data as object
     public  ResponseEntity<Employee> updateEmployee(@PathVariable  long id, @RequestBody Employee employeeDetails){
-          Employee updateEmployee = employeeRepository.findById(id).orElseThrow(() ->new ResouceNotFoundException("Sorry, employee with id = "+id+" is not exist"));
+        // find the employee by id, or throw a ResourceNotFoundException if it doesn't exist
+        Employee updateEmployee = employeeRepository.findById(id).orElseThrow(() ->new ResouceNotFoundException("Sorry, employee with id = "+id+" is not exist"));
 
-          updateEmployee.setFirstName(employeeDetails.getFirstName());
+        // update the employee's details with the new values
+        updateEmployee.setFirstName(employeeDetails.getFirstName());
           updateEmployee.setLastName((employeeDetails.getLastName()));
           updateEmployee.setEmailID((employeeDetails.getEmailID()));
 
-          employeeRepository.save(updateEmployee);
+        // save the updated employee to the database
+        employeeRepository.save(updateEmployee);
+
+        // return the updated employee along with HTTP status code of 200 (200 = OK || SUCESS)
           return ResponseEntity.ok(updateEmployee);
     }
 
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable long id){
+    @DeleteMapping("{id}")     //used when deleting
+    public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable long id){                        //ResponseEntity is used to return an HTTP response
         Employee employee = employeeRepository.findById(id).orElseThrow(() ->new ResouceNotFoundException("Sorry, employee with id = "+id+" is not exist"));
         employeeRepository.delete(employee);
+
+        //ResponseEntity object with HTTP status code of 204 (NO_CONTENT) indicating that deleting request was successful and there is no response body
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
